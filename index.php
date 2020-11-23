@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baretos</title>
+    <title>Locales hostelería</title>
 </head>
 
 <body>
@@ -69,7 +69,7 @@ session_start();
                     </div>
                     <div class="form-group">
                         <span class="form-check form-check-inline">
-                            <label id="take_away" class="form-check-label">Recogida en local: </label>
+                            <label id="take_away" class="form-check-label">Recollida en local: </label>
                             <input type="checkbox" name="take_away" id="take_away" class="form-check-input" />
                         </span>
                         <span class="form-check form-check-inline">
@@ -78,7 +78,7 @@ session_start();
                         </span>
                     </div>
                     <div id="file" class="custom-file">
-                            <label for="fileUpload" class="custom-file-label">Subir fichero</label>
+                            <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
                             <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input"/>
                     </div>
                     <div class="form-group">

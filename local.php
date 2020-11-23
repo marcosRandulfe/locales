@@ -14,7 +14,7 @@
         private $url_foto;
         private $validado;
         
-        function __construct($name, $address, $opening_hours, $take_away, $deliverys, $restaurant_menu, $whatsapp, $phones, $web, $email, $url_foto, $validado) {
+        function __construct($name, $address, $opening_hours, $take_away, $deliverys, $restaurant_menu, $whatsapp,$phones, $web, $email, $url_foto, $validado) {
             $this->name = $name;
             $this->address = $address;
             $this->opening_hours = $opening_hours;
@@ -22,7 +22,7 @@
             $this->deliverys = $deliverys;
             $this->restaurant_menu = $restaurant_menu;
             $this->whatsapp = $whatsapp;
-            $this->phones = $phones;
+            $this->phones= $phones;
             $this->web = $web;
             $this->email = $email;
             $this->url_foto = $url_foto;
@@ -124,10 +124,10 @@
 
         function setValidado($validado): void {
             $this->validado = $validado;
+        }    
+        
+        function addPhone($phone){
+            $this->phones[]=$phone;
         }
-
-
-        
-        
 
     }
