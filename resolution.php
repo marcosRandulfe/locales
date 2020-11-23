@@ -25,6 +25,43 @@ function validatePhone($phone){
     return false;
 }
 
+function insertarTelefonos($bd,$nombre,$telefonos){
+    $sql =sprintf('INSERT INTO phones VALUES (%s,%d),(%s,%d);',$nombre,$telefonos[0],$telefonos[1]);
+    $bd->query($sql);
+}
+
+function uploadFichero($nombreInput){
+    $target_dir = "uploads/";
+    //$foto_subida=$_FILES["fileToUpload"]["name"];
+    $nombre_base = basename($_FILES[$nombreInput]["name"]);
+    //$imageFileType = strtolower(pathinfo($nombre_base, PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES[$nombreInput]["tmp_name"]);
+    if ($check !== false) {
+        error_log("File is an image - " . $check["mime"] . ".");
+        $uploadOk = 1;
+    } else {
+        error_log("El archivo $nombre_base no es una imágen.");
+        $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES[$nombreInput]["size"] > 500000) {
+            error_log("Tu foto es muy grande");
+            $uploadOk = 0;
+    }
+    if ($uploadOk == 0) {
+        error_log("No se ha podido subir la foto $nombre_base.");
+    // if everything is ok, try to upload file
+    } else {
+        $url_foto = $target_dir.'/'.$nombre_base;
+        if (move_uploaded_file($_FILES[$nombreInput]["tmp_name"], $url_foto)) {
+            error_log("The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.");
+        } else {
+            error_log("Sorry, there was an error uploading your file.");
+        }
+    }
+    return $url_foto;
+}
+
 
 
 
@@ -64,7 +101,7 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
     $email = sanitice($_POST['email'],FILTER_VALIDATE_EMAIL);
     $phone= (validatePhone($_POST['phone']))?$_POST['phone']:"";
     $phone2= (validatePhone($_POST['phone2']))?$_POST['phone2']:"";
-    
+    $url_foto = uploadFichero("fileToUpload");
     
     $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s')",
             $nome,
@@ -75,8 +112,13 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
             $restaurant_menu,
             $whatsapp,
             $web,
-            $email);
+            $email,
+            $url_foto,
+            false
+            );
             $mysqli->query($sql);
+
+            insertarTelefonos($mysqli,$nome,[$phone,$phone2]);
 }
 
 
