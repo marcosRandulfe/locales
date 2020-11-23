@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+//use App\Models\User;
 
 class ExampleMiddleware
 {
@@ -15,6 +16,11 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        $api_token = $request->header('Api-Token');
+        if ($api_token==env('APP_KEY')){
+            return $next($request);
+        }
+        return null;
+        
     }
 }
