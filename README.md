@@ -1,6 +1,6 @@
 # restLocales
 
-## Aplicación de locales de hostelería con deliverys and take_app pontevedra
+## Aplicación de locales de hostelería con deliverys and take up pontevedra
 
 En el directorio superior esta el backend php  con el formulario par dar de 
 alta un local así como el formulario para aceptar los locales que se vayan reciviendo
