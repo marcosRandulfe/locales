@@ -26,8 +26,13 @@ function validatePhone($phone){
 }
 
 function insertarTelefonos($bd,$nombre,$telefonos){
-    $sql =sprintf('INSERT INTO phones VALUES (%s,%d),(%s,%d);',$nombre,$telefonos[0],$telefonos[1]);
-    $bd->query($sql);
+    foreach ($telefonos as $tel) {
+        $sql =sprintf("INSERT INTO phones VALUES ('%s','%d');",$nombre,$tel);
+        $bd->query($sql);
+        if($bd->errno){
+            error_log($bd->error);
+        }
+    }
 }
 
 function uploadFichero($nombreInput){
@@ -52,14 +57,14 @@ function uploadFichero($nombreInput){
         error_log("No se ha podido subir la foto $nombre_base.");
     // if everything is ok, try to upload file
     } else {
-        $url_foto = $target_dir.'/'.$nombre_base;
+        $url_foto = $target_dir.$nombre_base;
         if (move_uploaded_file($_FILES[$nombreInput]["tmp_name"], $url_foto)) {
             error_log("The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.");
         } else {
             error_log("Sorry, there was an error uploading your file.");
         }
     }
-    return $url_foto;
+    return $_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).$target_dir.$url_foto;
 }
 
 
@@ -103,7 +108,7 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
     $phone2= (validatePhone($_POST['phone2']))?$_POST['phone2']:"";
     $url_foto = uploadFichero("fileToUpload");
     
-    $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s')",
+    $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','%s','%d')",
             $nome,
             $direccion,
             $opening_hours,
@@ -117,7 +122,11 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
             false
             );
             $mysqli->query($sql);
-
+            if($mysqli->errno){
+                error_log("SQL: ".$sql);
+                error_log($mysqli->error);
+            }
+            
             insertarTelefonos($mysqli,$nome,[$phone,$phone2]);
 }
 

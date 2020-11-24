@@ -11,7 +11,7 @@ CREATE TABLE locales( name VARCHAR(20) PRIMARY KEY,
 			web VARCHAR(200),
 			email VARCHAR(200),
 			url_foto VARCHAR(40),
-			validado BOOLEAN);
+			validated BOOLEAN);
 	
 CREATE TABLE phones(name VARCHAR(20), phone VARCHAR(12),
 			 CONSTRAINT pk_phones PRIMARY KEY(name,phone),
