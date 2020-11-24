@@ -12,14 +12,18 @@ class Controller extends BaseController
         $locales=DB::select("SELECT * FROM `locales` L INNER JOIN `phones` P ON L.name=P.name WHERE L.validated=1");        
         foreach ($locales as $local) {
             if(isset($localesFormateados[$local->name])){
-                $local=$localesFormateados[$local->name];
-                if(isset($local->phones)){
-                    $local->phones[]=
+                $antiguo=$localesFormateados[$local->name];
+                if(isset($antiguo->phones)){
+                    $antiguo->phones[]=$local->phone;
+                }else{
+                    $antiguo->phones=[$antiguo->phone,$local->phone];
                 }
+                unset($antiguo->phone);
+                $localesFormateados[$local->name]=$antiguo;
             }else{
                 $localesFormateados[$local->name]=$local;
             }
         }
-        return var_dump($locales);
+        return json_encode($localesFormateados);
     }
 }
