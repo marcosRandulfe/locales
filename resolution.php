@@ -75,9 +75,9 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
         echo "<p>Telefono Invalido</p>";
     }
     $host="localhost";
-    $user="marcos";
-    $passwd ="abc123";
-    $bd ="locales";
+    $user="locales";
+    $passwd ="db.Locales2020";
+    $bd ="admin_locales";
 
     $mysqli = new mysqli($host, $user, $passwd, $bd) or die;
 

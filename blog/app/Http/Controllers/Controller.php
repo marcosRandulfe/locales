@@ -19,6 +19,7 @@ class Controller extends BaseController
                     $antiguo->phones=[$antiguo->phone,$local->phone];
                 }
                 unset($antiguo->phone);
+                unset($antiguo->validated);
                 $localesFormateados[$local->name]=$antiguo;
             }else{
                 $localesFormateados[$local->name]=$local;
