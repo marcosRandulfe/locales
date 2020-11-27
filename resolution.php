@@ -71,7 +71,7 @@ function uploadFichero($nombreInput){
 
 
 
-if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
+if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])&& isset($_POST['category'])){
     if(!validatePhone($_POST['phone'])){
         echo "<p>Telefono Invalido</p>";
     }
@@ -108,7 +108,9 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
     $phone= (validatePhone($_POST['phone']))?$_POST['phone']:"";
     $phone2= (validatePhone($_POST['phone2']))?$_POST['phone2']:"";
     $url_foto = uploadFichero("fileToUpload");
-    $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','".$url_foto."','%d')",
+    /*Falta añadir la validación de la categoria */
+    $categoria =$_POST['category'];
+    $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','".$url_foto."','%d','%s')",
             $nome,
             $direccion,
             $opening_hours,
@@ -118,7 +120,8 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
             $whatsapp,
             $web,
             $email,
-            false
+            false,
+            $categoria
             );
             $mysqli->query($sql);
             if($mysqli->errno){

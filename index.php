@@ -82,7 +82,7 @@ session_start();
                                 <option value="restaurante">Restaurante</option>
                                 <option value="bar">Bar</option>
                                 <option value="hotel">Hotel</option>
-                                <option value="Asador">Asador</option>
+                                <option value="asador">Asador</option>
                             </select>
                         </span>
                     </div>
