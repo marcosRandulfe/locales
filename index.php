@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locales hostelería</title>
 </head>
+
 <body>
     <header>
     </header>
@@ -17,11 +18,11 @@ session_start();
             <div class="col-sm-6">
             </div>
             <div id="form_container" class="col-sm-6">
-            
+
                 <form class="form container-flex" name="new_local" action="./resolution.php" enctype="multipart/form-data" method="post">
-                <header>
-                    <h6>Únete a hostelería de Pontevedra:</h6>
-                </header>
+                    <header>
+                        <h6>Únete a hostelería de Pontevedra:</h6>
+                    </header>
                     <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label id="name">Nome</label>
@@ -46,13 +47,13 @@ session_start();
                             <input type="tel" name="whatsapp" id="whatsapp" class="form-control form-control-sm" />
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label id="opening-hours">Horario</label>
                         <input type="text" name="opening-hours" id="opening-hours" class="form-control form-control-sm" />
                     </div>
                     <div class="form-group">
-                       
+
                     </div>
                     <div class="form-group">
                         <label id="">Carta</label>
@@ -66,7 +67,7 @@ session_start();
                         <label id="email">Email </label>
                         <input type="email" name="email" id="email" class="form-control form-control-sm" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group row">
                         <span class="form-check form-check-inline">
                             <label id="take_away" class="form-check-label">Recollida en local: </label>
                             <input type="checkbox" name="take_away" id="take_away" class="form-check-input" />
@@ -75,13 +76,22 @@ session_start();
                             <label id="delivery" class="form-check-label">Envio:</label>
                             <input type="checkbox" name="delivery" id="delivery" class="form-check-input" />
                         </span>
+                        <span class="form-group col-6">
+                            <select aria-placeholder="Seleccione una categoría" class="form-control form-control-sm" name="category" id="category" required>
+                                <option disabled selected value="">Seleccione una categoría</option>
+                                <option value="restaurante">Restaurante</option>
+                                <option value="bar">Bar</option>
+                                <option value="hotel">Hotel</option>
+                                <option value="Asador">Asador</option>
+                            </select>
+                        </span>
                     </div>
                     <div id="file" class="custom-file">
-                            <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
-                            <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input"/>
+                        <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
+                        <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" />
                     </div>
                     <div class="form-group">
-                     <button class="btn btn-white btn-block" type="submit">Enviar</button>
+                        <button class="btn btn-white btn-block" type="submit">Enviar</button>
                     </div>
                 </form>
             </div>
@@ -93,35 +103,44 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
-        body{
+        body {
             background-image: url('./img/peregrinagrande.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-           
+
         }
-        html,body, main, main > div{
+
+        html,
+        body,
+        main,
+        main>div {
             height: 100%;
-            margin:0;
+            margin: 0;
         }
-        form{
+
+        form {
             height: 100%;
             background-color: lightslategray;
-            color:white;
+            color: white;
         }
-        #cont_form{
+
+        #cont_form {
             height: 100%;
         }
 
-        form{
+        form {
             padding: 20px 20px;
-            
+
         }
-        #form_container{
+
+        #form_container {
             margin-right: 0px;
             padding: 0px;
         }
 
-        #file{margin-bottom: 10px;}
+        #file {
+            margin-bottom: 10px;
+        }
     </style>
 </body>
 
