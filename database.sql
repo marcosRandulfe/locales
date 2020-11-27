@@ -10,7 +10,7 @@ CREATE TABLE locales( name VARCHAR(20) PRIMARY KEY,
 			whatsapp VARCHAR(12),
 			web VARCHAR(200),
 			email VARCHAR(200),
-			url_foto VARCHAR(40),
+			url_foto VARCHAR(200),
 			validated BOOLEAN);
 	
 CREATE TABLE phones(name VARCHAR(20), phone VARCHAR(12),

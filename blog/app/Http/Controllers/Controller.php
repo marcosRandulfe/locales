@@ -7,8 +7,8 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    public function show()
-    {   $localesFormateados=[];
+    public function show(){
+        $localesFormateados=[];
         $locales=DB::select("SELECT * FROM `locales` L INNER JOIN `phones` P ON L.name=P.name WHERE L.validated=1");        
         foreach ($locales as $local) {
             if(isset($localesFormateados[$local->name])){
@@ -16,6 +16,7 @@ class Controller extends BaseController
                 if(isset($antiguo->phones)){
                     $antiguo->phones[]=$local->phone;
                 }else{
+
                     $antiguo->phones=[$antiguo->phone,$local->phone];
                 }
                 unset($antiguo->phone);
@@ -25,6 +26,6 @@ class Controller extends BaseController
                 $localesFormateados[$local->name]=$local;
             }
         }
-        return json_encode($localesFormateados);
+        return json_encode(array_values($localesFormateados));
     }
 }

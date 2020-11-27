@@ -64,7 +64,8 @@ function uploadFichero($nombreInput){
             error_log("Sorry, there was an error uploading your file.");
         }
     }
-    return $_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).$target_dir.$url_foto;
+    $directorio=$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/".$url_foto;
+    return $directorio;
 }
 
 
@@ -107,8 +108,7 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
     $phone= (validatePhone($_POST['phone']))?$_POST['phone']:"";
     $phone2= (validatePhone($_POST['phone2']))?$_POST['phone2']:"";
     $url_foto = uploadFichero("fileToUpload");
-    
-    $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','%s','%d')",
+    $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','".$url_foto."','%d')",
             $nome,
             $direccion,
             $opening_hours,
@@ -118,7 +118,6 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])){
             $whatsapp,
             $web,
             $email,
-            $url_foto,
             false
             );
             $mysqli->query($sql);
