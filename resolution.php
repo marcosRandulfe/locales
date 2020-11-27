@@ -109,7 +109,12 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])&&
     $phone2= (validatePhone($_POST['phone2']))?$_POST['phone2']:"";
     $url_foto = uploadFichero("fileToUpload");
     /*Falta añadir la validación de la categoria */
+    $categorias = ['asador','restaurante','bar','hotel'];
     $categoria =$_POST['category'];
+    if(!in_array($categoria,$categorias)){
+        $categoria="bar";
+    }
+    //if($categoria in [])
     $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','".$url_foto."','%d','%s')",
             $nome,
             $direccion,
