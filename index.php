@@ -15,68 +15,72 @@ session_start();
     </header>
     <main class="container-fluid">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-5">
             </div>
-            <div id="form_container" class="col-sm-6">
+            <div id="form_container" class="col-sm-7">
 
                 <form class="form container-flex" name="new_local" action="./resolution.php" enctype="multipart/form-data" method="post">
                     <header>
                         <h6>Únete a hostelería de Pontevedra:</h6>
                     </header>
                     <div class="form-row">
-                        <div class="form-group col-sm-6">
+                        <div class="form-group form-group-sm col-sm-6">
                             <label id="name">Nome</label>
-                            <input type="text" name="name" id="name" class="form-control form-control-sm" />
+                            <input type="text" name="name" id="name" class="form-control form-control-sm input-sm" />
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group form-group-sm col-sm-6">
                             <label id="address">Dirección</label>
-                            <input type="text" name="address" id="address" class="form-control form-control-sm" />
+                            <input type="text" name="address" id="address" class="form-control form-control-sm input-sm" />
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-sm-4">
+                        <div class="form-group form-group-sm col-sm-4">
                             <label>Teléfono 1</label>
-                            <input type="tel" name="phone" id="phone" class="form-control form-control-sm" />
+                            <input type="tel" name="phone" id="phone" class="form-control form-control-sm input-sm" />
                         </div>
-                        <div class="form-group col-sm-4">
+                        <div class="form-group form-group-sm col-sm-4">
                             <label id="phone2">Teléfono 2</label>
-                            <input type="tel" name="phone2" id="phone2" class="form-control form-control-sm" />
+                            <input type="tel" name="phone2" id="phone2" class="form-control form-control-sm input-sm" />
                         </div>
-                        <div class="form-group col-sm-4">
+                        <div class="form-group form-group-sm col-sm-4">
                             <label id="whatsapp">Whatsapp</label>
-                            <input type="tel" name="whatsapp" id="whatsapp" class="form-control form-control-sm" />
+                            <input type="tel" name="whatsapp" id="whatsapp" class="form-control form-control-sm input-sm" />
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group form-group-sm">
                         <label id="opening-hours">Horario</label>
                         <input type="text" name="opening-hours" id="opening-hours" class="form-control form-control-sm" />
                     </div>
                     <div class="form-group">
 
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group-sm">
                         <label id="">Carta</label>
                         <input type="url" name="restaurant_menu" id="restaurant_menu" class="form-control form-control-sm" />
                     </div>
-                    <div class="form-group">
-                        <label id="web">Web</label>
-                        <input type="url" name="web" id="web" class="form-control form-control-sm" />
+                    <div class="form-row">
+                        <div class="form-group form-group-sm col-sm-6">
+                            <label id="web">Web</label>
+                            <input type="url" name="web" id="web" class="form-control form-control-sm input-sm" />
+                        </div>
+                        <div class="form-group form-group-sm col-sm-6">
+                            <label id="email">Email </label>
+                            <input type="email" name="email" id="email" class="form-control form-control-sm" />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label id="email">Email </label>
-                        <input type="email" name="email" id="email" class="form-control form-control-sm" />
-                    </div>
-                    <div class="form-group row">
-                        <span class="form-check form-check-inline">
-                            <label id="take_away" class="form-check-label">Recollida en local: </label>
-                            <input type="checkbox" name="take_away" id="take_away" class="form-check-input" />
+                    <div class="form-group form-group-sm row">
+                        <span class="col col-6">
+                            <span class="form-check form-check-inline">
+                                <label id="take_away" class="form-check-label">Recollida en local: </label>
+                                <input type="checkbox" name="take_away" id="take_away" class="form-check-input" />
+                            </span>
+                            <span class="form-check form-check-inline">
+                                <label id="delivery" class="form-check-label">Envio:</label>
+                                <input type="checkbox" name="delivery" id="delivery" class="form-check-input" />
+                            </span>
                         </span>
-                        <span class="form-check form-check-inline">
-                            <label id="delivery" class="form-check-label">Envio:</label>
-                            <input type="checkbox" name="delivery" id="delivery" class="form-check-input" />
-                        </span>
-                        <span class="form-group col-6">
+                        <span class="form-group form-group-sm col-6">
                             <select aria-placeholder="Seleccione una categoría" class="form-control form-control-sm" name="category" id="category" required>
                                 <option disabled selected value="">Seleccione una categoría</option>
                                 <option value="restaurante">Restaurante</option>
@@ -90,7 +94,7 @@ session_start();
                         <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
                         <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group form-group-sm">
                         <button class="btn btn-white btn-block" type="submit">Enviar</button>
                     </div>
                 </form>
