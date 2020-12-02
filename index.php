@@ -36,15 +36,18 @@ session_start();
                     <div class="form-row">
                         <div class="form-group form-group-sm col-sm-4">
                             <label>Teléfono 1</label>
-                            <input type="tel" name="phone" id="phone" class="form-control form-control-sm input-sm" />
+                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[
+-]?(8|9)[ -]?([0-9][ -]?){8})" name="phone" id="phone" class="form-control form-control-sm input-sm" />
                         </div>
                         <div class="form-group form-group-sm col-sm-4">
                             <label id="phone2">Teléfono 2</label>
-                            <input type="tel" name="phone2" id="phone2" class="form-control form-control-sm input-sm" />
+                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[
+-]?(8|9)[ -]?([0-9][ -]?){8})" name="phone2" id="phone2" class="form-control form-control-sm input-sm" />
                         </div>
                         <div class="form-group form-group-sm col-sm-4">
                             <label id="whatsapp">Whatsapp</label>
-                            <input type="tel" name="whatsapp" id="whatsapp" class="form-control form-control-sm input-sm" />
+                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[
+-]?(8|9)[ -]?([0-9][ -]?){8})" name="whatsapp" id="whatsapp" class="form-control form-control-sm input-sm" />
                         </div>
                     </div>
 
@@ -92,7 +95,7 @@ session_start();
                     </div>
                     <div id="file" class="custom-file">
                         <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
-                        <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" />
+                        <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
                     </div>
                     <div class="form-group form-group-sm">
                         <button class="btn btn-white btn-block" type="submit">Enviar</button>
