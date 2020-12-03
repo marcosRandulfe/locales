@@ -93,9 +93,11 @@ session_start();
                             </select>
                         </span>
                     </div>
-                    <div id="file" class="custom-file">
-                        <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
-                        <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
+                    <div class="row">
+                        <div id="file" class="custom-file">
+                            <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
+                            <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
+                        </div>
                     </div>
                     <div class="form-group form-group-sm">
                         <button class="btn btn-white btn-block" type="submit">Enviar</button>
