@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php
+if(isset($_POST[''])){}
 readfile(__DIR__ . '/../includes/cabecera.html');
 ?>
 
@@ -36,14 +37,14 @@ readfile(__DIR__ . '/../includes/cabecera.html');
         <form class="form formulario" method="post" action="#">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label for="new_category" class="input-group-text">Nueva categoria:</label>
+                        <label for="new_category" class="input-group-text">Nueva categoría:</label>
                     </div>
-                    <input type="text" class="form-control" placeholder="Nueva categoria" aria-label="Nueva categoria:" aria-describedby="basic-addon2" id="new_category">
+                    <input type="text" class="form-control" placeholder="Nueva categoría" aria-label="Nueva categoria:" aria-describedby="basic-addon2" id="new_category">
                     <div class="input-group-append">
                         <button id="put_button" class="btn btn-outline-secondary" aria-label="Añadir" type="button">Añadir</button>
                     </div>
                 </div>
-            <button class="btn btn-primary btn-block" type="button" name="guardar_cambios">Guardar cambios</button>
+            <button class="btn btn-primary btn-block" id="save" type="button" name="guardar_cambios">Guardar cambios</button>
         </form>
     </main>
     <?php
@@ -65,9 +66,8 @@ readfile(__DIR__ . '/../includes/cabecera.html');
             margin-bottom: 100px;
         }
 
-        .categorias>ul {
+        .categorias ul {
             flex-wrap: wrap;
-            width: 75%;
         }
 
         .lista {
@@ -101,12 +101,16 @@ readfile(__DIR__ . '/../includes/cabecera.html');
         }
 
         .category_container{
-            margin-bottom: 100px;
+            margin-bottom: 50px;
         }
     </style>
     <script>
         console.log("fhajhfd");
         $(function(){
+
+            function borrar(){
+                console.log('borrar');
+            }
 
             String.prototype.capitalize = function() {
                 return this.charAt(0).toUpperCase() + this.slice(1);
@@ -126,10 +130,14 @@ readfile(__DIR__ . '/../includes/cabecera.html');
                     }
                     $('#ul_categories').append('<li class="lista" data-category="'
                         +new_category+'">'+new_category.capitalize()+
-                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></li>');
+                        '<button type="button" onclick="this.parentNode.remove()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></li>');
                 }
             }
+            $('.close').click((e)=>{
+                console.log("FFFF");
+            })
 
+        
             $('#put_button').click((e)=>{
                 console.log('Evento click');
                 addCategory();
@@ -141,6 +149,19 @@ readfile(__DIR__ . '/../includes/cabecera.html');
                 }
             });
 
+            $('#save').click((e)=>{
+                var categorias = $('category_container ul li');
+                if($($(categorias).length)){
+                    var valores = [];
+                    $(categorias).each((e)=>{
+                       var categoria= $(e).attr('data-category');
+                       valores.push(categoria);
+                       $.post('#',{'values[]' : valores});
+                    });
+                }else{
+                    alert("Debe de introducir una categoría por lo menos");
+                }
+            });
         });
     </script>
 </body>
