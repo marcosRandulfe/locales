@@ -105,7 +105,6 @@ readfile(__DIR__ . '/../includes/cabecera.html');
         }
     </style>
     <script>
-        console.log("fhajhfd");
         $(function(){
 
             function borrar(){
@@ -115,7 +114,7 @@ readfile(__DIR__ . '/../includes/cabecera.html');
             String.prototype.capitalize = function() {
                 return this.charAt(0).toUpperCase() + this.slice(1);
             }
-          
+
 
             function addCategory(){
                 var new_category=$('#new_category').val();
@@ -137,7 +136,7 @@ readfile(__DIR__ . '/../includes/cabecera.html');
                 console.log("FFFF");
             })
 
-        
+
             $('#put_button').click((e)=>{
                 console.log('Evento click');
                 addCategory();
