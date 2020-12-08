@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php
-if(isset($_POST[''])){}
-readfile(__DIR__ . '/../includes/cabecera.html');
+if(isset($_POST['values'])){
+    echo "Values exists";
+    require_once(__DIR__.'/../includes/bd.php');
+    $bd = new Bd();
+    $bd->setCategories($_POST['values']);
+}
+    readfile(__DIR__ .'/../includes/cabecera.html');
 ?>
-
 <body>
-    <main class="container">
-        <?php
+    <?php
         readfile(__DIR__ . '/../includes/nav.html');
-        ?>
+    ?>
+    <main class="container-fluid">
+
         <div  class="categorias">
             <h6>Categorias:</h6>
             <div id="category_container">
@@ -34,7 +39,7 @@ readfile(__DIR__ . '/../includes/cabecera.html');
             </ul>
         </div>
         </div>
-        <form class="form formulario" method="post" action="#">
+        <form class="form formulario">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label for="new_category" class="input-group-text">Nueva categoría:</label>
@@ -64,6 +69,7 @@ readfile(__DIR__ . '/../includes/cabecera.html');
             width: 75%;
             margin: 0 auto;
             margin-bottom: 100px;
+            margin-top: 30px;
         }
 
         .categorias ul {
@@ -118,8 +124,6 @@ readfile(__DIR__ . '/../includes/cabecera.html');
 
             function addCategory(){
                 var new_category=$('#new_category').val();
-                console.log(new_category);
-                console.log("Nueva categoria: ".new_category);
                 if(new_category!=null && new_category!=''){
                     if($('#advert').length){
                         $('#advert').remove();
@@ -131,6 +135,7 @@ readfile(__DIR__ . '/../includes/cabecera.html');
                         +new_category+'">'+new_category.capitalize()+
                         '<button type="button" onclick="this.parentNode.remove()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></li>');
                 }
+                $('#new_category').val('');
             }
             $('.close').click((e)=>{
                 console.log("FFFF");
@@ -138,25 +143,35 @@ readfile(__DIR__ . '/../includes/cabecera.html');
 
 
             $('#put_button').click((e)=>{
+                e.preventDefault();
                 console.log('Evento click');
                 addCategory();
             });
 
             $('#new_category').keyup((e)=>{
+                e.preventDefault();
                 if(e.keyCode ==13){
                     addCategory();
                 }
             });
 
             $('#save').click((e)=>{
-                var categorias = $('category_container ul li');
-                if($($(categorias).length)){
+                var categorias = $('#category_container ul li');
+                console.log('categorias: '+categorias);
+                console.log(categorias);
+                if(categorias != null){
                     var valores = [];
-                    $(categorias).each((e)=>{
+                    categorias.each((index, e)=>{
+                        console.log("Elemento: ");
+                        console.log(e);
                        var categoria= $(e).attr('data-category');
                        valores.push(categoria);
-                       $.post('#',{'values[]' : valores});
                     });
+                    console.log("Lista de valores:");
+                    console.log(valores);
+                    $.post('#',{'values[]' : valores},function(data){
+                           console.log(data);
+                       });
                 }else{
                     alert("Debe de introducir una categoría por lo menos");
                 }

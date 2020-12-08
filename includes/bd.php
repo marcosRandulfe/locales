@@ -15,6 +15,13 @@ class Bd{
         $this->mysqli= new mysqli($this->host, $this->user, $this->passwd, $this->bd) or die;
     }
 
+    function limpiarStrings($lista){
+        $strings=[];
+        foreach($lista as $item){
+            $strings[]=mysqli_real_escape_string($this->mysqli,$item);
+        }
+        return $strings;
+    }
 
     /**
      * Lista todos los locales en funcion asi como estan
@@ -95,5 +102,33 @@ class Bd{
             }
         }
         return $categories;
+    }
+
+    function setCategories($categories){
+        error_log("setCategories");
+        if($categories!=null && count($categories)>0){
+            $categories= $this->limpiarStrings($categories);
+            $sql = "DELETE FROM categories;";
+            $this->mysqli->query($sql);
+            if($this->mysqli->errno){
+                error_log("Locales: Error deleting old categories");
+                error_log("Locales: ".$this->mysqli->error);
+            }
+            error_log("Deleting old categories");
+            $sql="INSERT INTO categories VALUES ('{$categories[0]}')";
+            if(count($categories)>1){
+                for ($i=1; $i < count($categories); $i++) {
+                    $sql.=",('{$categories[$i]}')";
+                }
+            }
+            $sql.=';';
+            error_log($sql);
+            $this->mysqli->query($sql);
+            if($this->mysqli->errno){
+                error_log("Locales: Error updating locals categories");
+                error_log($this->mysqli->error);
+            }
+        }
+        return new Exception("The list is empty");
     }
 }

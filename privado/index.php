@@ -10,11 +10,12 @@ if (isset($_POST['value'])) {
 <?php
         readfile(__DIR__.'/../includes/cabecera.html');
 ?>
-<main class="container-fluid">
-        <!-- Encabezado -->
-        <?php 
+    <!-- Encabezado -->
+    <?php
          readfile(__DIR__.'/../includes/nav.html');
-        ?>
+    ?>
+<main class="container-fluid">
+
         <form name="form" action="#" method="post">
             <ul class="list-group">
                 <?php
@@ -26,7 +27,7 @@ if (isset($_POST['value'])) {
                     echo <<<EOF
                         <li class="list-group-item">
                             <div><p>Nombre: {$valor->getName()}<p></div>
-                            <div><p>Teléfono: {$valor->getAddress()}</p></div> 
+                            <div><p>Teléfono: {$valor->getAddress()}</p></div>
                             <button type="submit" name="value" class="btn btn-secondary float-right" value="{$valor->getName()}">Añadir</button>
                         </li>
 EOF;

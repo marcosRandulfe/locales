@@ -4,9 +4,11 @@
     readfile(__DIR__ . '/../includes/cabecera.html');
 ?>
 <body>
-        <main class="container-fluid">
     <?php
         readfile(__DIR__ . '/../includes/nav.html');
+    ?>
+    <main class="container-fluid">
+    <?php
         require_once __DIR__.'/../includes/bd.php';
         $bd = new Bd();
         $locales=$bd->obtenerLocales();
