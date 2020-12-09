@@ -33,13 +33,11 @@ session_start();
                     <div class="form-row">
                         <div class="form-group form-group-sm col-sm-4">
                             <label>Teléfono 1</label>
-                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[
--]?(8|9)[ -]?([0-9][ -]?){8})" name="phone" id="phone" class="form-control form-control-sm input-sm" />
+                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[-]?(8|9)[ -]?([0-9][ -]?){8})" name="phone" id="phone" class="form-control form-control-sm input-sm" />
                         </div>
                         <div class="form-group form-group-sm col-sm-4">
                             <label id="phone2">Teléfono 2</label>
-                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[
--]?(8|9)[ -]?([0-9][ -]?){8})" name="phone2" id="phone2" class="form-control form-control-sm input-sm" />
+                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[-]?(8|9)[ -]?([0-9][ -]?){8})" name="phone2" id="phone2" class="form-control form-control-sm input-sm" />
                         </div>
                         <div class="form-group form-group-sm col-sm-4">
                             <label id="whatsapp">Whatsapp</label>
@@ -102,7 +100,7 @@ session_start();
                                 <input type="file" id="menu" name="menu" class="custom-file-input" required aria-required="Foto del local obligatoria" />
                             </div>
                             --->
-                            <a rel="modal:open" class="btn btn-default btn-block btn-submit" id="#sel_menu">Seleccionar Menú</a>
+                            <a rel="modal:open" href="#ex2" class="btn btn-block btn-submit" id="#sel_menu">Seleccionar Menú</a>
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
@@ -172,7 +170,7 @@ session_start();
     </style>
     <form action="" class="login_form modal" id="ex2" style="display: none;">
         <h3>Suba un menu</h3>
-        <p><input type="submit" value="Subir menu"></p>
+        <p><input type="submit" value="Subir menú"></p>
     </form>
 </body>
 
