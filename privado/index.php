@@ -22,7 +22,15 @@ if (isset($_POST['value'])) {
                 require_once(__DIR__ . '/../includes/bd.php');
                 $bd = new Bd();
                 $locales = $bd->getLocalesToValidate();
-                //var_dump($locales);
+                if(empty($locales)){
+                    echo <<<EOF
+                    <div class="centrar">
+                        <div class="alert alert-primary" role="alert">
+                        Todavía no hay locales
+                    </div>
+                    </div>
+EOF;
+                }else{
                 foreach ($locales as $valor) {
                     echo <<<EOF
                         <li class="list-group-item">
@@ -32,6 +40,7 @@ if (isset($_POST['value'])) {
                         </li>
 EOF;
                 }
+            }
                 ?>
             </ul>
         </form>

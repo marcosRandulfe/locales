@@ -3,13 +3,11 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTFs-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locales hostelería</title>
 </head>
-
 <body>
     <header>
     </header>
@@ -18,7 +16,6 @@ session_start();
             <div class="col-sm-5">
             </div>
             <div id="form_container" class="col-sm-7">
-
                 <form class="form container-flex" name="new_local" action="./resolution.php" enctype="multipart/form-data" method="post">
                     <header>
                         <h6>Únete a hostelería de Pontevedra:</h6>
@@ -50,7 +47,6 @@ session_start();
 -]?(8|9)[ -]?([0-9][ -]?){8})" name="whatsapp" id="whatsapp" class="form-control form-control-sm input-sm" />
                         </div>
                     </div>
-
                     <div class="form-group form-group-sm">
                         <label id="opening-hours">Horario</label>
                         <input type="text" name="opening-hours" id="opening-hours" class="form-control form-control-sm" />
@@ -93,14 +89,24 @@ session_start();
                             </select>
                         </span>
                     </div>
-                    <div class="row">
-                        <div id="file" class="custom-file">
-                            <label for="fileUpload" class="custom-file-label">Subir ficheiro</label>
-                            <input type="file" id="fileUpload" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
+                    <div class="form-row">
+                        <div class="form-group form-group-sm col-sm-6">
+                            <div id="file" class="custom-file">
+                                <label for="fileUpload" class="custom-file-label">Seleccionar foto</label>
+                                <input type="file" id="fileUpload" accept="image/*" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm col-sm-6">
+                           <!-- <div id="file" class="custom-file">
+                                <label for="menu" class="custom-file-label">Seleccione el menu</label>
+                                <input type="file" id="menu" name="menu" class="custom-file-input" required aria-required="Foto del local obligatoria" />
+                            </div>
+                            --->
+                            <a rel="modal:open" class="btn btn-default btn-block btn-submit" id="#sel_menu">Seleccionar Menú</a>
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
-                        <button class="btn btn-white btn-block" type="submit">Enviar</button>
+                        <button class="btn btn-submit btn-block" type="submit">Enviar</button>
                     </div>
                 </form>
             </div>
@@ -111,18 +117,27 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Remember to include jQuery :) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script>
+       //$('#sel_menu').modal({});
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <style>
         body {
             background-image: url('./img/peregrinagrande.jpg');
             background-repeat: no-repeat;
             background-size: cover;
-
         }
 
         html,
         body,
         main,
-        main>div {
+        main > div {
             height: 100%;
             margin: 0;
         }
@@ -139,7 +154,6 @@ session_start();
 
         form {
             padding: 20px 20px;
-
         }
 
         #form_container {
@@ -150,7 +164,16 @@ session_start();
         #file {
             margin-bottom: 10px;
         }
+
+        .btn-submit{
+            background-color: white;
+            color: black;
+        }
     </style>
+    <form action="" class="login_form modal" id="ex2" style="display: none;">
+        <h3>Suba un menu</h3>
+        <p><input type="submit" value="Subir menu"></p>
+    </form>
 </body>
 
 </html>
