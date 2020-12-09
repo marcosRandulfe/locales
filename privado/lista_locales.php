@@ -48,7 +48,7 @@ EOF;
 
                 <?php endif ?>
     </main>
-        <?php
+<?php
     readfile(__DIR__ . '/../includes/estilos.html');
 
 ?>

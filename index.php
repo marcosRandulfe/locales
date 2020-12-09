@@ -3,11 +3,13 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTFs-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locales hostelería</title>
 </head>
+
 <body>
     <header>
     </header>
@@ -48,12 +50,23 @@ session_start();
                         <label id="opening-hours">Horario</label>
                         <input type="text" name="opening-hours" id="opening-hours" class="form-control form-control-sm" />
                     </div>
-                    <div class="form-group">
-
-                    </div>
-                    <div class="form-group form-group-sm">
+                <!--<div class="form-group form-group-sm">
                         <label id="">Carta</label>
                         <input type="url" name="restaurant_menu" id="restaurant_menu" class="form-control form-control-sm" />
+                    </div>
+                -->                 
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="inputState">Tipo de recurso:</label>
+                            <select id="inputState" class="form-control form-control-sm">
+                                <option value="url">URL</option>
+                                <option value="file">Archivo</option>
+                            </select>
+                        </div>
+                        <div id="entrada_menu" class="form-group col-md-8">
+                            <label  for="inputZip">Entrada:</label>
+                            <input type="text" class="form-control form-control-sm" id="input_menu"/>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group form-group-sm col-sm-6">
@@ -61,7 +74,7 @@ session_start();
                             <input type="url" name="web" id="web" class="form-control form-control-sm input-sm" />
                         </div>
                         <div class="form-group form-group-sm col-sm-6">
-                            <label id="email">Email </label>
+                            <label id="email">Email</label>
                             <input type="email" name="email" id="email" class="form-control form-control-sm" />
                         </div>
                     </div>
@@ -77,7 +90,7 @@ session_start();
                             </span>
                         </span>
                         <span class="form-group form-group-sm col-6">
-                            <select aria-placeholder="Seleccione una categoría" class="form-control form-control-sm" name="category" id="category" required>
+                            <select aria-placeholder="Seleccione una categoría" class="form-control custom-select form-control-md" name="category" id="category" required>
                                 <option disabled selected value="">Seleccione una categoría</option>
                                 <option value="restaurante">Restaurante</option>
                                 <option value="bar">Bar</option>
@@ -86,22 +99,22 @@ session_start();
                             </select>
                         </span>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group form-group-sm col-sm-6">
-                            <div id="file" class="custom-file">
-                                <label for="fileUpload" class="custom-file-label">Seleccionar foto</label>
-                                <input type="file" id="fileUpload" accept="image/*" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
-                            </div>
+                    <!-- <div class="form-row"> -->
+                    <div class="form-group form-group-sm">
+                        <div id="file" class="custom-file">
+                            <label for="fileUpload" class="custom-file-label">Seleccionar foto</label>
+                            <input type="file" id="fileUpload" accept="image/*" name="fileToUpload" class="custom-file-input" required aria-required="Foto del local obligatoria" />
                         </div>
-                        <div class="form-group form-group-sm col-sm-6">
-                           <!-- <div id="file" class="custom-file">
+                    </div>
+                    <!-- <div class="form-group form-group-sm col-sm-6">
+                             <div id="file" class="custom-file">
                                 <label for="menu" class="custom-file-label">Seleccione el menu</label>
                                 <input type="file" id="menu" name="menu" class="custom-file-input" required aria-required="Foto del local obligatoria" />
                             </div>
-                            --->
-                            <a rel="modal:open" href="#ex2" class="btn btn-block btn-submit" id="#sel_menu">Seleccionar Menú</a>
-                        </div>
-                    </div>
+                    --->
+                    <!--    <a rel="modal:open" href="#ex2" class="btn btn-block btn-submit" id="#sel_menu">Seleccionar Menú</a>-->
+                    <!-- </div> -->
+                    <!-- </div> -->
                     <div class="form-group form-group-sm">
                         <button class="btn btn-submit btn-block" type="submit">Enviar</button>
                     </div>
@@ -109,7 +122,6 @@ session_start();
             </div>
         </div>
     </main>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -121,7 +133,43 @@ session_start();
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script>
-       //$('#sel_menu').modal({});
+        //$('#sel_menu').modal({});
+        function onSelectChange() {
+            var selectedValue = document.getElementById("profilePictureType").value;
+            selectedValue == "1" ? upload() : link();
+        }
+
+        function upload() {
+            document.getElementById("enterUrl").disabled = true;
+            document.getElementById("fileBrowse").disabled = false;
+
+        }
+
+        function link() {
+            document.getElementById("fileBrowse").disabled = true;
+            document.getElementById("enterUrl").disabled = false;
+        }
+
+        $(function(){
+            var str ="";
+            $('#inputState').change(
+                function(){
+                    var str ="";
+                    $("#inputState option:selected").each(function() {
+                        str += $(this).val() + " ";
+                    });
+                    console.log('Valor:'+trim(str)+'/');
+                    str=trim(str);
+                    if(str=='file'){
+                        $('#entrada_menu').remove();
+                    }
+                    if(str=='url'){
+                        console.log('borrado');
+                        $('#entrada_menu').remove();
+                    }
+                }
+            );
+        });
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <style>
@@ -134,7 +182,7 @@ session_start();
         html,
         body,
         main,
-        main > div {
+        main>div {
             height: 100%;
             margin: 0;
         }
@@ -162,20 +210,29 @@ session_start();
             margin-bottom: 10px;
         }
 
-        .btn-submit{
+        .btn-submit {
             background-color: white;
             color: black;
         }
 
-        .modal a.close-modal{
+        .modal a.close-modal {
             top: -3px;
             right: -3px;
         }
     </style>
-    <form action="" class="login_form modal" id="ex2" style="display: none;">
-        <h3>Suba un menu</h3>
-        <p><input type="submit" value="Subir menú"></p>
+    <!--    <form action="" class="login_form modal" id="ex2" style="display: none;">
+        Choose a Profile Picture:<br>
+        <select id="profilePictureType" onchange="onSelectChange()">
+
+            <option value="1">Desde fichero</option>
+            <option value="2">Desde url</option>
+
+        </select><br>
+
+        <input type="file" id="fileBrowse" accept=""><br>
+        <input type="url" id="enterUrl" placeholder="Enter in a URL." disabled="disabled">
     </form>
+-->
 </body>
 
 </html>
