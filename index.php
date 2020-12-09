@@ -41,8 +41,7 @@ session_start();
                         </div>
                         <div class="form-group form-group-sm col-sm-4">
                             <label id="whatsapp">Whatsapp</label>
-                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[
--]?(8|9)[ -]?([0-9][ -]?){8})" name="whatsapp" id="whatsapp" class="form-control form-control-sm input-sm" />
+                            <input type="tel" pattern="((\+34|0034|34)?[ -]?(6|7)[ -]?([0-9][ -]?){8})|((\+34|0034|34)?[-]?(8|9)[ -]?([0-9][ -]?){8})" name="whatsapp" id="whatsapp" class="form-control form-control-sm input-sm" />
                         </div>
                     </div>
                     <div class="form-group form-group-sm">
@@ -166,6 +165,11 @@ session_start();
         .btn-submit{
             background-color: white;
             color: black;
+        }
+
+        .modal a.close-modal{
+            top: -3px;
+            right: -3px;
         }
     </style>
     <form action="" class="login_form modal" id="ex2" style="display: none;">
