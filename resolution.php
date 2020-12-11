@@ -99,9 +99,24 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])&&
     $nome= sanitice($_POST['name'],FILTER_SANITIZE_STRING);
     $direccion = sanitice($_POST['address'],FILTER_SANITIZE_STRING);
     $opening_hours = sanitice($_POST['opening-hours'],FILTER_SANITIZE_STRING);
-    $take_away = sanitice($_POST['take_away'],FILTER_VALIDATE_BOOLEAN); 
-    $deliverys = sanitice($_POST['delivery'],FILTER_VALIDATE_BOOLEAN);
-    $restaurant_menu =sanitice($_POST['restaurant_menu'],FILTER_SANITIZE_STRING);
+    if(isset($_POST['take_away'])){
+        $take_away = sanitice($_POST['take_away'],FILTER_VALIDATE_BOOLEAN); 
+    }else{
+        $take_away=false;
+    }
+    if(isset($_POST['delivery'])){
+        $deliverys = sanitice($_POST['delivery'],FILTER_VALIDATE_BOOLEAN);
+    }else{
+        $deliverys =false;
+    }
+       $restaurant_menu="";
+    if(isset($_POST['restaurant_menu'])){
+        $restaurant_menu =sanitice($_POST['restaurant_menu'],FILTER_SANITIZE_STRING);
+    }else{
+        if(isset($_FILES['fileMenu'])){
+            $restaurant_menu = uploadFichero('fileMenu');
+        } 
+    }
     $whatsapp= (validatePhone($_POST['whatsapp']))?$_POST['whatsapp']:"";
     $web = sanitice($_POST['web'],FILTER_VALIDATE_URL);
     $email = sanitice($_POST['email'],FILTER_VALIDATE_EMAIL);
@@ -109,10 +124,12 @@ if(isset($_POST['name']) && isset($_POST['address']) && isset($_POST['phone'])&&
     $phone2= (validatePhone($_POST['phone2']))?$_POST['phone2']:"";
     $url_foto = uploadFichero("fileToUpload");
     /*Falta añadir la validación de la categoria */
-    $categorias = ['asador','restaurante','bar','hotel'];
+    require_once(__DIR__.'/includes/bd.php');
+    $bd = new Bd();
+    $categorias = $bd->getCategories();
     $categoria =$_POST['category'];
     if(!in_array($categoria,$categorias)){
-        $categoria="bar";
+        $categoria="general";
     }
     //if($categoria in [])
     $sql = sprintf("INSERT INTO locales VALUES('%s','%s','%s','%b','%b','%s','%s','%s','%s','".$url_foto."','%d','%s')",

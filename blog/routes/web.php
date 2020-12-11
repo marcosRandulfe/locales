@@ -16,3 +16,8 @@ $router->get('/', [
     'middleware' => 'auth',
     'uses' => 'Controller@show'
 ]);
+
+$router->get('/categories',[
+            'middleware' => 'auth',
+            'uses' => 'Controller@categories'
+    ]);

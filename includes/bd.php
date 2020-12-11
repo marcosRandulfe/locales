@@ -29,7 +29,7 @@ class Bd{
      */
     function obtenerLocales(){
         $locales = [];
-        $res=$this->mysqli->query("SELECT * FROM `locales`  LEFT JOIN `phones` P ON L.name=P.name;");
+        $res=$this->mysqli->query("SELECT * FROM `locales` L LEFT JOIN `phones` P ON L.name=P.name;");
         if($res){
               while($row=$res->fetch_assoc()){
                   $local = new Local(
@@ -53,7 +53,7 @@ class Bd{
                   }
               }
         }
-        return $locales;
+        return array_values($locales);
     }
 
         function getLocalesToValidate(){
@@ -108,12 +108,22 @@ class Bd{
         error_log("setCategories");
         if($categories!=null && count($categories)>0){
             $categories= $this->limpiarStrings($categories);
+            $categoriasLimpias=[];
+            foreach ($categories as $valor) {
+                if($valor!='general'){
+                    $categoriasLimpias[]=$valor;
+                };
+            }
+            $categories=$categoriasLimpias;
             $sql = "DELETE FROM categories;";
             $this->mysqli->query($sql);
             if($this->mysqli->errno){
                 error_log("Locales: Error deleting old categories");
                 error_log("Locales: ".$this->mysqli->error);
             }
+            
+            $categories = array_diff($categories, array('general'));
+            
             error_log("Deleting old categories");
             $sql="INSERT INTO categories VALUES ('{$categories[0]}')";
             if(count($categories)>1){

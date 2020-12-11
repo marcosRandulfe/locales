@@ -6,6 +6,8 @@ CREATE TABLE categories(
 	name VARCHAR(20) PRIMARY KEY
 );
 
+INSERT INTO categories VALUES ('general');
+
 CREATE TABLE locales(name VARCHAR(20) PRIMARY KEY, 
 			address VARCHAR(20),
 			opening_hours VARCHAR(200),

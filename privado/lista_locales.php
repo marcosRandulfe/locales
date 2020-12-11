@@ -7,21 +7,20 @@
     <?php
         readfile(__DIR__ . '/../includes/nav.html');
     ?>
-    <main class="container-fluid">
+    <main class="container">
     <?php
         require_once __DIR__.'/../includes/bd.php';
         $bd = new Bd();
         $locales=$bd->obtenerLocales();
 
 ?>
-<?php if(count($locales)):?>
-        <table>
+<?php if(count($locales)>0):?>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Dirección</th>
                     <th>Web</th>
-                    <th>Visualizar</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +31,7 @@
                         <tr>
                             <td>{$local->getName()}</td>
                             <td>{$local->getAddress()}</td>
-                            <td>{$local->getPhones()[0]}</td>
+                            <td><a href="{$local->getWeb()}">{$local->getWeb()}</a></td>
                         </tr>
 EOF;
                     }
@@ -50,7 +49,6 @@ EOF;
     </main>
 <?php
     readfile(__DIR__ . '/../includes/estilos.html');
-
 ?>
     <style>
         .centrar{

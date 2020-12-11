@@ -1,15 +1,16 @@
 <?php
 session_start();
+require_once(__DIR__.'/includes/bd.php');
+    $bd = new Bd();
+    $categorias=$bd->getCategories();
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTFs-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Locales hostelería</title>
 </head>
-
 <body>
     <header>
     </header>
@@ -55,8 +56,8 @@ session_start();
                         <input type="url" name="restaurant_menu" id="restaurant_menu" class="form-control form-control-sm" />
                     </div>
                 -->                 
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
+                    <div class="form-row" id="to_input">
+                        <div  class="form-group col-md-4">
                             <label for="inputState">Tipo de recurso:</label>
                             <select id="inputState" class="form-control form-control-sm">
                                 <option value="url">URL</option>
@@ -92,10 +93,11 @@ session_start();
                         <span class="form-group form-group-sm col-6">
                             <select aria-placeholder="Seleccione una categoría" class="form-control custom-select form-control-md" name="category" id="category" required>
                                 <option disabled selected value="">Seleccione una categoría</option>
-                                <option value="restaurante">Restaurante</option>
-                                <option value="bar">Bar</option>
-                                <option value="hotel">Hotel</option>
-                                <option value="asador">Asador</option>
+                                <?php
+                                    foreach ($categorias as $categoria) {
+                                        echo '<option value="'.$categoria.'">'.ucfirst($categoria).'</option>';
+                                    }
+                                ?>
                             </select>
                         </span>
                     </div>
@@ -158,14 +160,18 @@ session_start();
                     $("#inputState option:selected").each(function() {
                         str += $(this).val() + " ";
                     });
-                    console.log('Valor:'+trim(str)+'/');
-                    str=trim(str);
+                    console.log('Valor:'+$.trim(str)+'/');
+                    str=$.trim(str);
+                    if(str=='url'){
+                        $('#entrada_menu').remove();
+                    $('#to_input').append(
+                        '<div id="entrada_menu" class="form-group col-md-8" name="restaurant_menu"><label  for="inputZip">Entrada:</label><input type="text" class="form-control form-control-sm" name="restaurant_menu" id="input_menu"/></div>'
+                    );
+                    }
                     if(str=='file'){
                         $('#entrada_menu').remove();
-                    }
-                    if(str=='url'){
-                        console.log('borrado');
-                        $('#entrada_menu').remove();
+                        $('#to_input').append(
+                       '<div id="entrada_menu" class="custom-file col file_input"><label for="fileUpload" class="custom-file-label">Seleccionar menú</label><input type="file" id="fileUpload" name="fileMenu" class="custom-file-input" aria-label="Foto del Menu"></div>');
                     }
                 }
             );
@@ -219,8 +225,13 @@ session_start();
             top: -3px;
             right: -3px;
         }
+
+        .file_input{
+            bottom: 0px;
+            margin-top: 30px;
+        }
     </style>
-    <!--    <form action="" class="login_form modal" id="ex2" style="display: none;">
+<!--    <form action="" class="login_form modal" id="ex2" style="display: none;">
         Choose a Profile Picture:<br>
         <select id="profilePictureType" onchange="onSelectChange()">
 

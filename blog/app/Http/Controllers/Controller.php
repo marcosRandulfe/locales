@@ -28,4 +28,9 @@ class Controller extends BaseController
         }
         return json_encode(array_values($localesFormateados));
     }
+
+    public function categories(){
+        $categories = DB::select("SELECT name FROM categories;");
+        return json_encode($categories);
+    }
 }
